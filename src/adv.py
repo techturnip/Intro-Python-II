@@ -41,26 +41,47 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 PLAYER = Player('Tyler', room['outside'])
 
+# START GAME
+GREETING = f'Your adventure awaits, {PLAYER.name}\n'
+
+print(GREETING, "___________________")
+
 # Write a loop that:
 while True:
 
     # * Prints the current room name
-    print(f'Location: {PLAYER.current_room.name}')
+    print(f'\nLocation: {PLAYER.current_room.name}')
 
     # * Prints the current description (the textwrap module might be useful here).
     print(f'Description: {PLAYER.current_room.description}')
 
     # * Waits for user input and decides what to do.
-    INPUT_CMD = input("Where would you like to go: ").split(' ')
+    INPUT_CMD = input("\nWhere would you like to go: ").split(' ')
 
-    COMMAND = INPUT_CMD[0]
+    # TODO: handle multiple args
+    COMMAND = INPUT_CMD[0] # Store single command for now
 
     # If the user enters a cardinal direction, attempt to move to the room there.
+
+    # Check command val and make it uppercase for
+    # consistency
     if COMMAND.upper() == "N" or COMMAND.upper() == "S" or COMMAND.upper() == "E" or COMMAND.upper() == "W":
+        # use direction method to get new room
         MOVE_TO_ROOM = PLAYER.current_room.direction(COMMAND.upper())
 
+        # if val of MOVE_TO_ROOM is None
+        if MOVE_TO_ROOM == None:
+            print("\nYou cannot move in that direction!")
+        else:
+            # else change the Player's location
+            PLAYER.move(MOVE_TO_ROOM)
+
+    else:
+        print("\nYou cannot move in that direction!")
+
+
     if COMMAND.upper() == "Q":
-        print("\nThanks for playing!")
+        print("\nThanks for playing!\n")
         break
 
 # Print an error message if the movement isn't allowed.

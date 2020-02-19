@@ -9,3 +9,7 @@ class Player:
 
     def __str__(self):
         return f'{self.name} is in {self.current_room}'
+
+    def move(self, new_room):
+        print(f'\n{self.name} has changed rooms...')
+        self.current_room = new_room
