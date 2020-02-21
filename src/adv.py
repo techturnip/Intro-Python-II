@@ -76,10 +76,11 @@ while True:
             # else change the Player's location
             PLAYER.move(MOVE_TO_ROOM)
 
+    # Else (if not N, S, E, or W), invalid command
     else:
         print("\nYou cannot move in that direction!")
 
-
+    # If command is "Q" break the loop
     if COMMAND.upper() == "Q":
         print("\nThanks for playing!\n")
         break
