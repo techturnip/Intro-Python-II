@@ -3,4 +3,5 @@ class Item:
         self.name = name
         self.description = description
 
-    pass
+    def __str__(self):
+        return f'{self.name}: {self.description}'
